@@ -66,7 +66,7 @@ def generate_topics():
     """
 
     # ✅ Fresh model to avoid memory context
-    model = genai.GenerativeModel("gemini-2.5-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     response = model.generate_content(prompt)
     
     topics = [t.strip() for t in response.text.strip().split("\n") if t.strip()]
@@ -79,6 +79,7 @@ def categorize_question():
     Determines which topic is most related to a given question.
     """
     data = request.json
+    #print("Received categorize request:", data)
     query = data.get("query")
     topics = data.get("topics")
 
@@ -100,7 +101,7 @@ def categorize_question():
     """
 
     # ✅ Fresh model per request
-    model = genai.GenerativeModel("gemini-2.5-pro")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     response = model.generate_content(prompt)
     related_topic = response.text.strip()
     
