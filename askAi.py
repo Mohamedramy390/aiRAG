@@ -141,4 +141,8 @@ def categorize_question():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001)
+    # Get the PORT from Render (default to 5001 only if running locally)
+    port = int(os.environ.get("PORT", 5001))
+    
+    # Listen on 0.0.0.0 (Required for Render)
+    app.run(host="0.0.0.0", port=port)
